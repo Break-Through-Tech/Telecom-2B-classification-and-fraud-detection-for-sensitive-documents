@@ -9,7 +9,8 @@
 | Name             | GitHub Handle | Contribution                                                             |
 |------------------|---------------|--------------------------------------------------------------------------|
 | Yuting Wu        | @yuting-0     | TBD                                                                      |
-| Drashti Shah     | @             | TBD                                                                      |
+| Drashti Shah     | @Dshah1003    | TBD                                                                      |
+| Kasish Jain      | @             | TBD                                                                      |
 
 ---
 
