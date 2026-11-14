@@ -1,117 +1,175 @@
-# Classification and Fraud Detection for Sensitive Documents 
+# Classification and Fraud Detection for Sensitive Documents
 
-> 💡 **Note for the team:** This is just a template. Update the above title with your AI Studio Challenge Project name. Remove all guidance notes and example text in this template and populate this README with your own content. You can work on this README throughout AI Studio, and get feedback from your AI Studio Coach and Challenge Advisor before finalizing it.  
-
----
-
-### 👥 **Team Members**
-
-| Name             | GitHub Handle | Contribution                                                             |
-|------------------|---------------|--------------------------------------------------------------------------|
-| Yuting Wu        | @yuting-0     | TBD                                                                      |
-| Drashti Shah     | @Dshah1003    | TBD                                                                      |
-| Kasish Jain      | @             | TBD                                                                      |
+Machine learning model that detects tampered identity documents (passports and driver's licenses) using forensic image features. Built for **Verizon** through the **Break Through Tech AI Studio** (Fall 2026).
 
 ---
 
-## 🎯 **Project Highlights**
+## 👥 Team Members
 
-**Example:**
-
-- Developed a machine learning model using `[model type/technique]` to address `[challenge project task]`.
-- Achieved `[key metric or result]`, demonstrating `[value or impact]` for `[host company]`.
-- Generated actionable insights to inform business decisions at `[host company or stakeholders]`.
-- Implemented `[specific methodology]` to address industry constraints or expectations.
-
----
-
-## 👩🏽‍💻 **Setup and Installation**
-
-**Provide step-by-step instructions so someone else can run your code and reproduce your results. Depending on your setup, include:**
-
-* How to clone the repository
-* How to install dependencies
-* How to set up the environment
-* How to access the dataset(s)
-* How to run the notebook or scripts
+| Name | GitHub Handle | Contribution |
+|---|---|---|
+| Yuting Wu | [@yuting-0](https://github.com/yuting-0) | [e.g., data preprocessing, feature extraction, model training] |
+| Drashti Shah | [@Dshah1003](https://github.com/Dshah1003) | [e.g., feature engineering, model comparison, evaluation, documentation] |
+| Kasish Jain | [@handle] | [contribution] |
 
 ---
 
-## 🏗️ **Project Overview**
+## 🎯 Project Highlights
 
-**Describe:**
-
-- How this project is connected to the Break Through Tech AI Program
-- Your AI Studio host company and the project objective and scope
-- The real-world significance of the problem and the potential impact of your work
-
----
-
-## 📊 **Data Exploration**
-
-**You might consider describing the following (as applicable):**
-
-* The dataset(s) used: origin, format, size, type of data
-* Data exploration and preprocessing approaches
-* Insights from your Exploratory Data Analysis (EDA)
-* Challenges and assumptions when working with the dataset(s)
-
-**Potential visualizations to include:**
-
-* Plots, charts, heatmaps, feature visualizations, sample dataset images
+- Built a binary classifier that separates genuine from tampered identity documents in the IDNet dataset
+- Engineered **295 forensic image features** (including HOG and LBP) to capture signs of tampering
+- Compared **13 models**; **AdaBoost** performed best, with **91.5% 5-fold cross-validation accuracy** and **95% recall on tampered documents**
+- High recall on fakes means very few fraudulent documents get through, which is the priority for an identity-verification use case
 
 ---
 
-## 🧠 **Model Development**
+## 🏗️ Project Overview
 
-**You might consider describing the following (as applicable):**
+**Program:** This project is part of the Break Through Tech AI Program's AI Studio, where student teams solve a real business problem for a host company.
 
-* Model(s) used (e.g., CNN with transfer learning, regression models)
-* Feature selection and Hyperparameter tuning strategies
-* Training setup (e.g., % of data for training/validation, evaluation metric, baseline performance)
+**Host company:** Verizon
 
+**Objective:** Identity verification systems have to detect forged or edited documents. Our goal is to build a model that classifies a document image as genuine or tampered.
 
----
+**Scope (milestones):**
+1. Binary classification: genuine vs. tampered (September)
+2. An autonomous AI agent built around the classifier (October)
+3. Multi-class classification of the tampering type (November)
 
-## 📈 **Results & Key Findings**
-
-**You might consider describing the following (as applicable):**
-
-* Performance metrics (e.g., Accuracy, F1 score, RMSE)
-* How your model performed
-* Insights from evaluating model fairness
-
-**Potential visualizations to include:**
-
-* Confusion matrix, precision-recall curve, feature importance plot, prediction distribution, outputs from fairness or explainability tools
+**Impact:** Automated fraud detection reduces manual review and helps stop identity fraud during account sign-up and verification.
 
 ---
 
-## 🚀 **Next Steps**
+## 📊 Data Exploration
 
-**You might consider addressing the following (as applicable):**
+**Dataset:** [IDNet](link-to-dataset), a synthetic identity document dataset for fraud detection.
 
-* What are some of the limitations of your model?
-* What would you do differently with more time/resources?
-* What additional datasets or techniques would you explore?
+- The Kaggle mirror contains only part of the full dataset: West Virginia driver's licenses, Greek passports and Russian passports
+- **Working subset:** 600 images, 300 genuine and 300 tampered
+- **Tampering methods (5):** full blur, partial blur, copy-move, splice, text overwrite
 
----
+**Preprocessing:** [e.g., resizing, grayscale conversion, normalization]
 
-## 📝 **License**
+**Challenges:**
+- The full dataset is very large, which slowed downloading and delayed the first milestone
+- The Kaggle mirror covers fewer document types than the full dataset
 
-Specify how your project can be used by others. Choose an appropriate license and link it here (e.g., MIT, Apache 2.0). Make sure your Challenge Advisor approves of the selected license type. 
-
-**Example:**
-This project is licensed under the MIT License.
-
----
-
-## 📄 **References** (Optional but encouraged)
-
-Cite relevant papers, articles, or resources that supported your project.
+**Visualizations:**
+<!-- Add images saved in /images -->
+![Sample genuine vs tampered documents](images/sample_documents.png)
+![Class distribution](images/class_distribution.png)
 
 ---
 
-## 🙏 **Acknowledgements** (Optional but encouraged)
+## 🧠 Model Development
 
-Thank your Challenge Advisor, host company representatives, TA, and others who supported your project.
+**Features:** 295 handcrafted forensic features, including:
+- HOG (Histogram of Oriented Gradients): edge and shape structure
+- LBP (Local Binary Patterns): local texture changes
+- [other feature groups, e.g., noise, color, compression artifacts]
+
+**Models compared (13):** [list, e.g., Logistic Regression, SVM, Random Forest, Gradient Boosting, AdaBoost, KNN, ...]
+
+**Training setup:**
+- 5-fold cross-validation
+- Metrics: accuracy, precision, recall and F1, with a focus on **recall for the tampered class**
+- [hyperparameter tuning method, e.g., GridSearchCV]
+
+---
+
+## 📈 Results & Key Findings
+
+| Model | CV Accuracy | Recall (Tampered) | F1 |
+|---|---|---|---|
+| **AdaBoost** | **91.5%** | **95%** | [ ] |
+| [Model 2] | [ ] | [ ] | [ ] |
+| [Model 3] | [ ] | [ ] | [ ] |
+
+**Key findings:**
+- AdaBoost gave the best balance of accuracy and fraud recall
+- [Which features mattered most, e.g., LBP texture features]
+- [Which tampering type was hardest to detect]
+
+![Confusion matrix](images/confusion_matrix.png)
+![Feature importance](images/feature_importance.png)
+
+---
+
+## 👩🏽‍💻 Setup and Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Break-Through-Tech/Telecom-2B-classification-and-fraud-detection-for-sensitive-documents.git
+cd Telecom-2B-classification-and-fraud-detection-for-sensitive-documents
+
+# 2. Create a virtual environment
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+```
+
+**Dataset:**
+- A small sample for testing is in `data/sample/`
+- Full dataset: [Kaggle / Zenodo link]. Download it and place it in `data/raw/`
+
+**Run the project:**
+```bash
+# Extract features
+python [src/extract_features.py]
+
+# Train models
+python [src/train.py]
+
+# Evaluate
+python [src/evaluate.py]
+```
+
+Or open the notebooks in order:
+1. `notebooks/01_data_exploration.ipynb`
+2. `notebooks/02_feature_engineering.ipynb`
+3. `notebooks/03_model_training_evaluation.ipynb`
+
+---
+
+## 📁 Repository Structure
+
+```
+├── data/
+│   └── sample/          # small sample dataset for testing
+├── notebooks/           # annotated Jupyter notebooks
+├── src/                 # feature extraction, training, evaluation scripts
+├── images/              # plots used in this README
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🚀 Next Steps
+
+- **Limitations:** trained on a small subset (600 images) covering only 3 document types, so it may not generalize to other countries or states
+- Train on the full IDNet dataset from Zenodo
+- Try CNNs or transfer learning (e.g., ResNet, EfficientNet) and compare them with handcrafted features
+- Finish multi-class classification of the tampering type
+- Build the AI agent workflow around the classifier
+
+---
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE). [Confirm with the Challenge Advisor]
+
+---
+
+## 📄 References
+
+- IDNet dataset: [paper/link]
+- [Other papers or tutorials used]
+
+---
+
+## 🙏 Acknowledgements
+
+Thanks to our Challenge Advisor, our AI Studio Coach, the Verizon team and Break Through Tech for their support.
