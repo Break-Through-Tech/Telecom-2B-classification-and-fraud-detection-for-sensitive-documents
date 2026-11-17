@@ -10,7 +10,7 @@ Machine learning model that detects tampered identity documents (passports and d
 |---|---|---|
 | Yuting Wu | [@yuting-0](https://github.com/yuting-0) | [e.g., data preprocessing, feature extraction, model training] |
 | Drashti Shah | [@Dshah1003](https://github.com/Dshah1003) | [e.g., feature engineering, model comparison, evaluation, documentation] |
-| Kasish Jain | [@handle] | [contribution] |
+| Kasish Jain | [@KASISHJAIN] | [AI agent: LangChain + local Ollama LLM calling the classifier tool, three-outcome thresholds (approve / human review / reject), conversation memory, Streamlit GUI] |
 
 ---
 
