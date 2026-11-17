@@ -1,0 +1,11 @@
+langchain>=1.0
+langchain-ollama
+langchain-core
+lightgbm
+scikit-learn
+scikit-image
+opencv-python
+numpy
+joblib
+streamlit
+pymupdf
